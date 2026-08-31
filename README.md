@@ -22,6 +22,12 @@ evidence tuple appends `SUPPORTED`; a matching contradiction appends
 `REFUTED`. The original claim is never removed. The precedence is fixed:
 `REFUTED > UNKNOWN > CLOSED`.
 
+Receipt self-digests are intentionally not embedded in the receipt. Each
+receipt declares `self_binding.mode=DETACHED_MANIFEST`, and the final
+`observation-manifest.json` records the non-empty SHA-256 digest of the receipt
+bytes. Conformance also proves that substituting another receipt is
+fail-closed as `REFUTED_RECEIPT_DIGEST_UNBOUND`.
+
 ## Fixed contract
 
 - Exactly 12 denominator cells and exactly 12 released `.gooo` activities.

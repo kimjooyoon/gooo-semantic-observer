@@ -163,6 +163,7 @@ func baseReport(meta Meta, inputDigest string, inventory InventoryMetrics) Repor
 		ArtifactKinds: append([]string(nil), ArtifactKinds...),
 		Inventory:     inventory,
 		Runtime:       RuntimeMetrics{OutputArtifactFiles: len(ArtifactKinds)},
+		SelfBinding:   SelfBinding{Mode: "DETACHED_MANIFEST", ManifestPath: meta.ManifestPath},
 		AuthorityChain: AuthorityChain{
 			Source:      ArtifactLink{Path: meta.SourcePath, Digest: meta.SourceDigest},
 			SemanticIR:  ArtifactLink{Path: meta.SemanticIRPath, Digest: meta.SemanticIRDigest},
