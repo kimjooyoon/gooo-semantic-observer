@@ -19,6 +19,14 @@
       "stage": "go test ./...",
       "reason": "report.go fmt.Fprintf omitted the next_operation argument",
       "preserved": true
+    },
+    {
+      "run_id": "33361095918",
+      "job_id": "99392443917",
+      "commit": "ce438b5",
+      "stage": "gofmt",
+      "reason": "cmd and observer model sources had formatting drift",
+      "preserved": true
     }
   ],
   "duplicate_writers": [],
