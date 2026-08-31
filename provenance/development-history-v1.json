@@ -1,0 +1,23 @@
+{
+  "schema": "gooo/semantic-observer/development-history/v1",
+  "repository": "kimjooyoon/gooo-semantic-observer",
+  "owner_thread_id": "01a0558a-86b7-70f2-b849-09747d6f3f18",
+  "scope": "gooo-semantic-observer",
+  "writer_policy": "single-writer",
+  "writer_events": [
+    {
+      "commit": "cca1676",
+      "event": "initial implementation",
+      "status": "preserved"
+    }
+  ],
+  "failed_attempts": [],
+  "duplicate_writers": [],
+  "local_go_commands": 0,
+  "cross_project_required_gates": 0,
+  "preservation_policy": {
+    "failed_attempts_are_append_only": true,
+    "duplicate_writer_events_are_append_only": true,
+    "unexpected_changes_stop_work": true
+  }
+}

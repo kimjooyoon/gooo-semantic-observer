@@ -2,6 +2,14 @@
 set -euo pipefail
 
 jq -e '
+  .schema == "gooo/semantic-observer/development-history/v1" and
+  .writer_policy == "single-writer" and
+  (.duplicate_writers | length) == 0 and
+  .local_go_commands == 0 and
+  .cross_project_required_gates == 0
+' provenance/development-history-v1.json >/dev/null
+
+jq -e '
   .schema == "gooo/semantic-observer/denominator/v1" and
   .total == 12 and (.cells | length) == 12
 ' contracts/semantic-observer-denominator-v1.json >/dev/null

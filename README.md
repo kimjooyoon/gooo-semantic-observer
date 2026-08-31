@@ -56,3 +56,8 @@ emits a human CI summary.
 Go build, test, formatting, vet, and conformance are intentionally run only in
 GitHub Actions. The repository does not require another project branch, pull
 request, or mutable ref as a gate.
+
+Development ownership and preserved writer history are recorded in
+`provenance/development-history-v1.json`. This repository is single-writer;
+failed attempts and duplicate-writer observations are appended rather than
+deleted.
