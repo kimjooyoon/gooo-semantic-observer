@@ -3,10 +3,10 @@ package observer
 import "encoding/json"
 
 const (
-	Schema        = "gooo/semantic-observer/receipt/v1"
-	InputSchema   = "gooo/semantic-observer/input/v1"
-	IRSchema      = "gooo/semantic-observer/ir/v1"
-	ContractSchema = "gooo/semantic-observer/denominator/v1"
+	Schema          = "gooo/semantic-observer/receipt/v1"
+	InputSchema     = "gooo/semantic-observer/input/v1"
+	IRSchema        = "gooo/semantic-observer/ir/v1"
+	ContractSchema  = "gooo/semantic-observer/denominator/v1"
 	StateUnverified = "UNVERIFIED"
 	StateSupported  = "SUPPORTED"
 	StateRefuted    = "REFUTED"
@@ -27,12 +27,12 @@ var ArtifactKinds = []string{
 }
 
 type Input struct {
-	Schema     string             `json:"schema"`
-	CaseID     string             `json:"case_id"`
-	Evaluator  EvaluatorReference `json:"evaluator"`
-	Claims     []Claim            `json:"claims"`
-	Evidence   []Evidence         `json:"evidence"`
-	Authority  AuthorityInput     `json:"authority"`
+	Schema    string             `json:"schema"`
+	CaseID    string             `json:"case_id"`
+	Evaluator EvaluatorReference `json:"evaluator"`
+	Claims    []Claim            `json:"claims"`
+	Evidence  []Evidence         `json:"evidence"`
+	Authority AuthorityInput     `json:"authority"`
 }
 
 type EvaluatorReference struct {
@@ -44,20 +44,20 @@ type EvaluatorReference struct {
 }
 
 type Claim struct {
-	ID             string           `json:"id"`
-	SubjectID      string           `json:"subject_id"`
-	Title          string           `json:"title"`
-	AssertionDigest string          `json:"assertion_digest"`
-	ExactTuple     []string         `json:"exact_tuple"`
-	EvaluatorID    string           `json:"evaluator_id"`
-	EvaluatorDigest string          `json:"evaluator_digest"`
+	ID              string           `json:"id"`
+	SubjectID       string           `json:"subject_id"`
+	Title           string           `json:"title"`
+	AssertionDigest string           `json:"assertion_digest"`
+	ExactTuple      []string         `json:"exact_tuple"`
+	EvaluatorID     string           `json:"evaluator_id"`
+	EvaluatorDigest string           `json:"evaluator_digest"`
 	SelfAttestation *SelfAttestation `json:"self_attestation"`
 }
 
 type SelfAttestation struct {
-	EvaluatorID     string `json:"evaluator_id"`
-	ReleaseDigest   string `json:"release_digest"`
-	Decision        string `json:"decision"`
+	EvaluatorID   string `json:"evaluator_id"`
+	ReleaseDigest string `json:"release_digest"`
+	Decision      string `json:"decision"`
 }
 
 type Evidence struct {
@@ -180,19 +180,19 @@ type StateCounts struct {
 }
 
 type RuntimeMetrics struct {
-	PeakRSSKiB        int `json:"peak_rss_kib"`
-	WallMS            int `json:"wall_ms"`
+	PeakRSSKiB          int `json:"peak_rss_kib"`
+	WallMS              int `json:"wall_ms"`
 	OutputArtifactFiles int `json:"output_artifact_files"`
 }
 
 type InventoryMetrics struct {
-	InputDescendantDirs          int  `json:"input_descendant_dirs"`
-	InputDescendantFiles         int  `json:"input_descendant_files"`
-	InputPhysicalLines           int  `json:"input_physical_lines"`
-	InputGoLines                 int  `json:"input_go_lines"`
-	InputGoooLines               int  `json:"input_gooo_lines"`
-	RootReadmeExcluded           bool `json:"root_readme_excluded"`
-	Violations                   []string `json:"violations"`
+	InputDescendantDirs  int      `json:"input_descendant_dirs"`
+	InputDescendantFiles int      `json:"input_descendant_files"`
+	InputPhysicalLines   int      `json:"input_physical_lines"`
+	InputGoLines         int      `json:"input_go_lines"`
+	InputGoooLines       int      `json:"input_gooo_lines"`
+	RootReadmeExcluded   bool     `json:"root_readme_excluded"`
+	Violations           []string `json:"violations"`
 }
 
 type ArtifactLink struct {
@@ -227,38 +227,38 @@ type ObservationManifest struct {
 }
 
 type Meta struct {
-	SourcePath       string
-	SourceDigest     string
-	SemanticIRPath   string
-	SemanticIRDigest string
-	GeneratedGoPath  string
+	SourcePath        string
+	SourceDigest      string
+	SemanticIRPath    string
+	SemanticIRDigest  string
+	GeneratedGoPath   string
 	GeneratedGoDigest string
-	EvaluatorPath    string
-	EvaluatorDigest  string
-	ContractPath     string
-	ContractDigest   string
-	ReceiptPath      string
-	HumanReportPath  string
-	Denominator      Denominator
+	EvaluatorPath     string
+	EvaluatorDigest   string
+	ContractPath      string
+	ContractDigest    string
+	ReceiptPath       string
+	HumanReportPath   string
+	Denominator       Denominator
 }
 
 type Report struct {
-	Schema         string             `json:"schema"`
-	CaseID         string             `json:"case_id"`
-	InputDigest    string             `json:"input_digest"`
-	Decision       string             `json:"decision"`
-	Reason         string             `json:"reason"`
-	Precedence     []string           `json:"precedence"`
-	Claims         []ClaimState       `json:"claims"`
-	StateCounts    StateCounts        `json:"state_counts"`
-	Unknowns       []Unknown          `json:"unknowns"`
-	Transitions    []Transition       `json:"transitions"`
-	ArtifactKinds  []string           `json:"artifact_kinds"`
-	Runtime        RuntimeMetrics     `json:"runtime"`
-	Inventory      InventoryMetrics   `json:"inventory"`
-	Authority      AuthorityReport    `json:"authority"`
-	AuthorityChain AuthorityChain     `json:"authority_chain"`
-	AppendOnly     AppendOnly         `json:"append_only"`
+	Schema         string           `json:"schema"`
+	CaseID         string           `json:"case_id"`
+	InputDigest    string           `json:"input_digest"`
+	Decision       string           `json:"decision"`
+	Reason         string           `json:"reason"`
+	Precedence     []string         `json:"precedence"`
+	Claims         []ClaimState     `json:"claims"`
+	StateCounts    StateCounts      `json:"state_counts"`
+	Unknowns       []Unknown        `json:"unknowns"`
+	Transitions    []Transition     `json:"transitions"`
+	ArtifactKinds  []string         `json:"artifact_kinds"`
+	Runtime        RuntimeMetrics   `json:"runtime"`
+	Inventory      InventoryMetrics `json:"inventory"`
+	Authority      AuthorityReport  `json:"authority"`
+	AuthorityChain AuthorityChain   `json:"authority_chain"`
+	AppendOnly     AppendOnly       `json:"append_only"`
 }
 
 func (r Report) JSON() ([]byte, error) {

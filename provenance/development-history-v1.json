@@ -1,0 +1,80 @@
+{
+  "schema": "gooo/semantic-observer/development-history/v1",
+  "repository": "kimjooyoon/gooo-semantic-observer",
+  "owner_thread_id": "01a0558a-86b7-70f2-b849-09747d6f3f18",
+  "scope": "gooo-semantic-observer",
+  "writer_policy": "single-writer",
+  "writer_events": [
+    {
+      "commit": "cca1676",
+      "event": "initial implementation",
+      "status": "preserved"
+    }
+  ],
+  "failed_attempts": [
+    {
+      "run_id": "33361037619",
+      "job_id": "99392286342",
+      "commit": "51a7ef9",
+      "stage": "go test ./...",
+      "reason": "report.go fmt.Fprintf omitted the next_operation argument",
+      "preserved": true
+    },
+    {
+      "run_id": "33361095918",
+      "job_id": "99392443917",
+      "commit": "ce438b5",
+      "stage": "gofmt",
+      "reason": "cmd and observer model sources had formatting drift",
+      "preserved": true
+    },
+    {
+      "run_id": "33361229032",
+      "job_id": "99392826546",
+      "commit": "ad29376",
+      "stage": "gofmt",
+      "reason": "observer model Authority field retained one extra alignment space",
+      "preserved": true
+    },
+    {
+      "run_id": "33361281488",
+      "job_id": "99392973890",
+      "commit": "782a144",
+      "stage": "conformance",
+      "reason": "caller-owned fixture source references omitted the sha256 digest prefix",
+      "preserved": true
+    },
+    {
+      "run_id": "33361352243",
+      "job_id": "99393176660",
+      "commit": "1ec0ae0",
+      "stage": "conformance",
+      "reason": "closed-caller-input remained UNKNOWN after source binding correction; direct fixture regression test added",
+      "preserved": true
+    },
+    {
+      "run_id": "33361480572",
+      "job_id": "99393543581",
+      "commit": "3c4ed37",
+      "stage": "conformance",
+      "reason": "direct observeClaim regression test passed while end-to-end caller fixture remained UNKNOWN; full Observe regression test added",
+      "preserved": true
+    },
+    {
+      "run_id": "33361542834",
+      "job_id": "99393719614",
+      "commit": "2ca6f8d",
+      "stage": "test",
+      "reason": "Observe shadowed the resolved claim state inside the evidence branch",
+      "preserved": true
+    }
+  ],
+  "duplicate_writers": [],
+  "local_go_commands": 0,
+  "cross_project_required_gates": 0,
+  "preservation_policy": {
+    "failed_attempts_are_append_only": true,
+    "duplicate_writer_events_are_append_only": true,
+    "unexpected_changes_stop_work": true
+  }
+}

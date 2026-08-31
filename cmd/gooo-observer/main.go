@@ -465,18 +465,18 @@ func sameStrings(left, right []string) bool {
 
 func expectedDecision(caseName string) (string, bool) {
 	decisions := map[string]string{
-		"closed-github-run":        observer.DecisionClosed,
-		"closed-github-artifact":   observer.DecisionClosed,
-		"closed-caller-input":      observer.DecisionClosed,
-		"unknown-direct-missing":   observer.DecisionUnknown,
+		"closed-github-run":          observer.DecisionClosed,
+		"closed-github-artifact":     observer.DecisionClosed,
+		"closed-caller-input":        observer.DecisionClosed,
+		"unknown-direct-missing":     observer.DecisionUnknown,
 		"unknown-dependency-blocked": observer.DecisionUnknown,
-		"unknown-stale":             observer.DecisionUnknown,
-		"unknown-ambiguous":         observer.DecisionUnknown,
-		"refuted-contradiction":     observer.DecisionRefuted,
-		"refuted-self-attestation":  observer.DecisionRefuted,
-		"refuted-evaluator-digest":  observer.DecisionRefuted,
-		"refuted-evidence-digest":   observer.DecisionRefuted,
-		"refuted-source-binding":    observer.DecisionRefuted,
+		"unknown-stale":              observer.DecisionUnknown,
+		"unknown-ambiguous":          observer.DecisionUnknown,
+		"refuted-contradiction":      observer.DecisionRefuted,
+		"refuted-self-attestation":   observer.DecisionRefuted,
+		"refuted-evaluator-digest":   observer.DecisionRefuted,
+		"refuted-evidence-digest":    observer.DecisionRefuted,
+		"refuted-source-binding":     observer.DecisionRefuted,
 	}
 	decision, ok := decisions[caseName]
 	return decision, ok

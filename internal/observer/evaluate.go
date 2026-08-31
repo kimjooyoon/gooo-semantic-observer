@@ -105,7 +105,9 @@ func Observe(raw []byte, meta Meta, inventory InventoryMetrics) (Report, []Claim
 			transitionCount++
 			transitions = append(transitions, Transition{Sequence: len(transitions) + 1, ClaimID: claim.ID, From: StateUnverified, To: StateRefuted, Reason: authorityReason})
 		} else {
-			state, transition, unknown := observeClaim(claim, claimEvidence)
+			var transition *Transition
+			var unknown *Unknown
+			state, transition, unknown = observeClaim(claim, claimEvidence)
 			if transition != nil {
 				transition.Sequence = len(transitions) + 1
 				transitions = append(transitions, *transition)
@@ -264,15 +266,28 @@ func observeClaim(claim Claim, evidence []Evidence) (string, *Transition, *Unkno
 	if len(evidence) == 0 {
 		return StateUnverified, nil, unknownRecord("OBSERVATION", "LOAD_CLAIM_EVIDENCE", "CLAIM_EVIDENCE_MISSING", "DIRECT_MISSING", "PROVIDE_IMMUTABLE_EVIDENCE", "claim:"+claim.ID)
 	}
+	var blockedEvidence, staleEvidence, ambiguousEvidence *Evidence
 	for _, item := range evidence {
 		if item.Availability == "BLOCKED" {
-			return StateUnverified, nil, unknownRecord("EVIDENCE", "LOAD_DEPENDENCY", "EVIDENCE_DEPENDENCY_BLOCKED", "DEPENDENCY_BLOCKED", "PROVIDE_DEPENDENCY_RECEIPT", "evidence:"+item.ID)
+			if blockedEvidence == nil {
+				candidate := item
+				blockedEvidence = &candidate
+			}
+			continue
 		}
 		if item.Freshness == "STALE" {
-			return StateUnverified, nil, unknownRecord("EVIDENCE", "VERIFY_FRESHNESS", "EVIDENCE_STALE", "STALE", "OBSERVE_CURRENT_EVIDENCE", "evidence:"+item.ID)
+			if staleEvidence == nil {
+				candidate := item
+				staleEvidence = &candidate
+			}
+			continue
 		}
 		if item.Observation == "UNKNOWN" || item.Availability == "MISSING" || item.Freshness == "UNKNOWN" {
-			return StateUnverified, nil, unknownRecord("EVIDENCE", "RESOLVE_OBSERVATION", "EVIDENCE_OBSERVATION_UNKNOWN", "AMBIGUOUS", "PROVIDE_EXACT_OBSERVATION", "evidence:"+item.ID)
+			if ambiguousEvidence == nil {
+				candidate := item
+				ambiguousEvidence = &candidate
+			}
+			continue
 		}
 		if !equalTuple(item.ExactTuple, claim.ExactTuple) {
 			continue
@@ -283,6 +298,15 @@ func observeClaim(claim Claim, evidence []Evidence) (string, *Transition, *Unkno
 		if item.Observation == "SUPPORTS" {
 			return StateSupported, &Transition{ClaimID: claim.ID, From: StateUnverified, To: StateSupported, EvidenceIDs: []string{item.ID}, Reason: "EXACT_EVIDENCE_MATCH"}, nil
 		}
+	}
+	if blockedEvidence != nil {
+		return StateUnverified, nil, unknownRecord("EVIDENCE", "LOAD_DEPENDENCY", "EVIDENCE_DEPENDENCY_BLOCKED", "DEPENDENCY_BLOCKED", "PROVIDE_DEPENDENCY_RECEIPT", "evidence:"+blockedEvidence.ID)
+	}
+	if staleEvidence != nil {
+		return StateUnverified, nil, unknownRecord("EVIDENCE", "VERIFY_FRESHNESS", "EVIDENCE_STALE", "STALE", "OBSERVE_CURRENT_EVIDENCE", "evidence:"+staleEvidence.ID)
+	}
+	if ambiguousEvidence != nil {
+		return StateUnverified, nil, unknownRecord("EVIDENCE", "RESOLVE_OBSERVATION", "EVIDENCE_OBSERVATION_UNKNOWN", "AMBIGUOUS", "PROVIDE_EXACT_OBSERVATION", "evidence:"+ambiguousEvidence.ID)
 	}
 	return StateUnverified, nil, unknownRecord("EVIDENCE", "COMPARE_EXACT_TUPLE", "EVIDENCE_TUPLE_AMBIGUOUS", "AMBIGUOUS", "PROVIDE_MATCHING_EXACT_TUPLE", "claim:"+claim.ID)
 }
