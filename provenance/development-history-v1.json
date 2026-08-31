@@ -59,6 +59,14 @@
       "stage": "conformance",
       "reason": "direct observeClaim regression test passed while end-to-end caller fixture remained UNKNOWN; full Observe regression test added",
       "preserved": true
+    },
+    {
+      "run_id": "33361542834",
+      "job_id": "99393719614",
+      "commit": "2ca6f8d",
+      "stage": "test",
+      "reason": "Observe shadowed the resolved claim state inside the evidence branch",
+      "preserved": true
     }
   ],
   "duplicate_writers": [],

@@ -105,7 +105,9 @@ func Observe(raw []byte, meta Meta, inventory InventoryMetrics) (Report, []Claim
 			transitionCount++
 			transitions = append(transitions, Transition{Sequence: len(transitions) + 1, ClaimID: claim.ID, From: StateUnverified, To: StateRefuted, Reason: authorityReason})
 		} else {
-			state, transition, unknown := observeClaim(claim, claimEvidence)
+			var transition *Transition
+			var unknown *Unknown
+			state, transition, unknown = observeClaim(claim, claimEvidence)
 			if transition != nil {
 				transition.Sequence = len(transitions) + 1
 				transitions = append(transitions, *transition)
