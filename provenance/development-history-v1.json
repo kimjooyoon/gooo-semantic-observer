@@ -43,6 +43,14 @@
       "stage": "conformance",
       "reason": "caller-owned fixture source references omitted the sha256 digest prefix",
       "preserved": true
+    },
+    {
+      "run_id": "33361352243",
+      "job_id": "99393176660",
+      "commit": "1ec0ae0",
+      "stage": "conformance",
+      "reason": "closed-caller-input remained UNKNOWN after source binding correction; direct fixture regression test added",
+      "preserved": true
     }
   ],
   "duplicate_writers": [],

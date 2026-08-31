@@ -1,6 +1,7 @@
 package observer
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -62,5 +63,23 @@ func TestDecisionPrecedence(t *testing.T) {
 	}
 	if got := resolveDecision(true, 1, true); got != DecisionRefuted {
 		t.Fatalf("refuted decision = %s", got)
+	}
+}
+
+func TestCallerFixtureSupportsExactTuple(t *testing.T) {
+	raw, err := os.ReadFile(filepath.Join("..", "..", "fixtures", "closed-caller-input.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var input Input
+	if err := json.Unmarshal(raw, &input); err != nil {
+		t.Fatal(err)
+	}
+	if err := validateEvidence(input.Evidence[0], input.Evaluator); err != nil {
+		t.Fatal(err)
+	}
+	state, transition, unknown := observeClaim(input.Claims[0], input.Evidence)
+	if state != StateSupported || transition == nil || unknown != nil {
+		t.Fatalf("caller fixture state=%s transition=%#v unknown=%#v", state, transition, unknown)
 	}
 }
