@@ -27,6 +27,14 @@
       "stage": "gofmt",
       "reason": "cmd and observer model sources had formatting drift",
       "preserved": true
+    },
+    {
+      "run_id": "33361229032",
+      "job_id": "99392826546",
+      "commit": "ad29376",
+      "stage": "gofmt",
+      "reason": "observer model Authority field retained one extra alignment space",
+      "preserved": true
     }
   ],
   "duplicate_writers": [],

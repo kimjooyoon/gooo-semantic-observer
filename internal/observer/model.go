@@ -32,7 +32,7 @@ type Input struct {
 	Evaluator EvaluatorReference `json:"evaluator"`
 	Claims    []Claim            `json:"claims"`
 	Evidence  []Evidence         `json:"evidence"`
-	Authority AuthorityInput      `json:"authority"`
+	Authority AuthorityInput     `json:"authority"`
 }
 
 type EvaluatorReference struct {
