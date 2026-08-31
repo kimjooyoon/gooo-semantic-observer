@@ -34,7 +34,7 @@ func HumanReport(report Report) string {
 	if len(report.Unknowns) > 0 {
 		builder.WriteString("\n## UNKNOWN records\n\n")
 		for _, unknown := range report.Unknowns {
-			fmt.Fprintf(&builder, "- stage=`%s`, step=`%s`, reason=`%s`, unknown_class=`%s`, next_operation=`%s`, blocked_by=`%s`\n", unknown.Stage, unknown.Step, unknown.Reason, unknown.UnknownClass, strings.Join(unknown.BlockedBy, ","))
+			fmt.Fprintf(&builder, "- stage=`%s`, step=`%s`, reason=`%s`, unknown_class=`%s`, next_operation=`%s`, blocked_by=`%s`\n", unknown.Stage, unknown.Step, unknown.Reason, unknown.UnknownClass, unknown.NextOperation, strings.Join(unknown.BlockedBy, ","))
 		}
 	}
 	return builder.String()

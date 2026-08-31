@@ -11,7 +11,16 @@
       "status": "preserved"
     }
   ],
-  "failed_attempts": [],
+  "failed_attempts": [
+    {
+      "run_id": "33361037619",
+      "job_id": "99392286342",
+      "commit": "51a7ef9",
+      "stage": "go test ./...",
+      "reason": "report.go fmt.Fprintf omitted the next_operation argument",
+      "preserved": true
+    }
+  ],
   "duplicate_writers": [],
   "local_go_commands": 0,
   "cross_project_required_gates": 0,
