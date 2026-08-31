@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/semantic-observer/input/v1",
+  "case_id": "refuted-evaluator-digest",
+  "evaluator": {"id": "gooo://evaluator/observer-parent", "version": "v0.1.0", "release_tag": "v0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "observed_release_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+  "claims": [{"id": "gooo://claim/refuted-evaluator-digest", "subject_id": "gooo://subject/evaluator-digest-claim", "title": "Evaluator digest changed", "assertion_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "exact_tuple": ["subject:evaluator-digest-claim", "assertion:closed", "revision:1"], "evaluator_id": "gooo://evaluator/child", "evaluator_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "self_attestation": null}],
+  "evidence": [],
+  "authority": {"repository_writes": 0, "local_test_executions": 0, "cross_project_required_gates": 0}
+}

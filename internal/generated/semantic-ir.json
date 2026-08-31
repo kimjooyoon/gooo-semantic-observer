@@ -1,0 +1,151 @@
+{
+  "schema": "gooo/semantic-observer/ir/v1",
+  "source_path": "examples/semantic-observer/main.gooo",
+  "source_digest": "sha256:b3f9259cdc3597d05ec7b44628bd168c4f46c0a7c1b69d180edc2c183ed1ffe1",
+  "nodes": [
+    {
+      "id": "gooo://semantic-observer/activity/observe-immutable-run",
+      "activity": "ObserveImmutableRun",
+      "name": "Observe immutable GitHub run",
+      "proof_choice": "FOUNDATION",
+      "indicator_class": "DRIVER",
+      "metric_id": "gooo.metric.semantic-observer.immutable-run.v1",
+      "metric_path": "evidence.immutable-run",
+      "artifact": "evidence.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 4
+    },
+    {
+      "id": "gooo://semantic-observer/activity/observe-immutable-artifact",
+      "activity": "ObserveImmutableArtifact",
+      "name": "Observe immutable GitHub artifact",
+      "proof_choice": "FOUNDATION",
+      "indicator_class": "OUTCOME",
+      "metric_id": "gooo.metric.semantic-observer.immutable-artifact.v1",
+      "metric_path": "evidence.immutable-artifact",
+      "artifact": "evidence.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 5
+    },
+    {
+      "id": "gooo://semantic-observer/activity/observe-immutable-commit",
+      "activity": "ObserveImmutableCommit",
+      "name": "Observe immutable Git commit",
+      "proof_choice": "FOUNDATION",
+      "indicator_class": "GUARDRAIL",
+      "metric_id": "gooo.metric.semantic-observer.immutable-commit.v1",
+      "metric_path": "evidence.immutable-commit",
+      "artifact": "evidence.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 6
+    },
+    {
+      "id": "gooo://semantic-observer/activity/bind-claim-exact-tuple",
+      "activity": "BindClaimExactTuple",
+      "name": "Bind claim exact tuple",
+      "proof_choice": "FOUNDATION",
+      "indicator_class": "DRIVER",
+      "metric_id": "gooo.metric.semantic-observer.claim-exact-tuple.v1",
+      "metric_path": "claims.exact-tuple",
+      "artifact": "claims.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 7
+    },
+    {
+      "id": "gooo://semantic-observer/activity/preserve-original-claim",
+      "activity": "PreserveOriginalClaim",
+      "name": "Preserve original claim",
+      "proof_choice": "COHERENCE",
+      "indicator_class": "OUTCOME",
+      "metric_id": "gooo.metric.semantic-observer.original-claim.v1",
+      "metric_path": "claims.original",
+      "artifact": "claims.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 9
+    },
+    {
+      "id": "gooo://semantic-observer/activity/append-supported-transition",
+      "activity": "AppendSupportedTransition",
+      "name": "Append supported transition",
+      "proof_choice": "COHERENCE",
+      "indicator_class": "GUARDRAIL",
+      "metric_id": "gooo.metric.semantic-observer.supported-transition.v1",
+      "metric_path": "transitions.supported",
+      "artifact": "transitions.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 10
+    },
+    {
+      "id": "gooo://semantic-observer/activity/append-refuted-transition",
+      "activity": "AppendRefutedTransition",
+      "name": "Append refuted transition",
+      "proof_choice": "COHERENCE",
+      "indicator_class": "DRIVER",
+      "metric_id": "gooo.metric.semantic-observer.refuted-transition.v1",
+      "metric_path": "transitions.refuted",
+      "artifact": "transitions.ndjson",
+      "evaluator": "observer.Observe",
+      "source_line": 11
+    },
+    {
+      "id": "gooo://semantic-observer/activity/preserve-unknown-record",
+      "activity": "PreserveUnknownRecord",
+      "name": "Preserve six-field unknown record",
+      "proof_choice": "COHERENCE",
+      "indicator_class": "OUTCOME",
+      "metric_id": "gooo.metric.semantic-observer.unknown-record.v1",
+      "metric_path": "observer-receipt.unknowns",
+      "artifact": "observer-receipt.json",
+      "evaluator": "observer.Observe",
+      "source_line": 12
+    },
+    {
+      "id": "gooo://semantic-observer/activity/enforce-digest-match",
+      "activity": "EnforceDigestMatch",
+      "name": "Enforce evaluator and evidence digest match",
+      "proof_choice": "REGRESSION",
+      "indicator_class": "GUARDRAIL",
+      "metric_id": "gooo.metric.semantic-observer.digest-match.v1",
+      "metric_path": "evidence.digest",
+      "artifact": "observer-receipt.json",
+      "evaluator": "observer.Observe",
+      "source_line": 14
+    },
+    {
+      "id": "gooo://semantic-observer/activity/enforce-self-attestation-boundary",
+      "activity": "EnforceSelfAttestationBoundary",
+      "name": "Enforce self attestation boundary",
+      "proof_choice": "REGRESSION",
+      "indicator_class": "DRIVER",
+      "metric_id": "gooo.metric.semantic-observer.self-attestation.v1",
+      "metric_path": "claims.self-attestation",
+      "artifact": "observer-receipt.json",
+      "evaluator": "observer.Observe",
+      "source_line": 15
+    },
+    {
+      "id": "gooo://semantic-observer/activity/emit-observer-receipt",
+      "activity": "EmitObserverReceipt",
+      "name": "Emit observer receipt",
+      "proof_choice": "REGRESSION",
+      "indicator_class": "OUTCOME",
+      "metric_id": "gooo.metric.semantic-observer.observer-receipt.v1",
+      "metric_path": "observer-receipt",
+      "artifact": "observer-receipt.json",
+      "evaluator": "observer.Observe",
+      "source_line": 16
+    },
+    {
+      "id": "gooo://semantic-observer/activity/emit-human-report",
+      "activity": "EmitHumanReport",
+      "name": "Emit human observer report",
+      "proof_choice": "REGRESSION",
+      "indicator_class": "GUARDRAIL",
+      "metric_id": "gooo.metric.semantic-observer.human-report.v1",
+      "metric_path": "observer-report",
+      "artifact": "observer-report.md",
+      "evaluator": "observer.Observe",
+      "source_line": 17
+    }
+  ]
+}

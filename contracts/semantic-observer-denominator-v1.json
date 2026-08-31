@@ -1,0 +1,30 @@
+{
+  "schema": "gooo/semantic-observer/denominator/v1",
+  "denominator_id": "gooo://denominator/semantic-observer/v1",
+  "candidate_id": "gooo.product.semantic-observer.v1",
+  "total": 12,
+  "proofs": [
+    {"choice": "FOUNDATION", "total": 4},
+    {"choice": "COHERENCE", "total": 4},
+    {"choice": "REGRESSION", "total": 4}
+  ],
+  "indicator_classes": [
+    {"class": "DRIVER", "total": 4},
+    {"class": "OUTCOME", "total": 4},
+    {"class": "GUARDRAIL", "total": 4}
+  ],
+  "cells": [
+    {"ordinal": 1, "id": "gooo.cell.semantic-observer.observe-immutable-run", "activity": "ObserveImmutableRun", "proof_choice": "FOUNDATION", "indicator_class": "DRIVER", "metric_id": "gooo.metric.semantic-observer.immutable-run.v1", "metric_path": "evidence.immutable-run", "artifact": "evidence.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 2, "id": "gooo.cell.semantic-observer.observe-immutable-artifact", "activity": "ObserveImmutableArtifact", "proof_choice": "FOUNDATION", "indicator_class": "OUTCOME", "metric_id": "gooo.metric.semantic-observer.immutable-artifact.v1", "metric_path": "evidence.immutable-artifact", "artifact": "evidence.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 3, "id": "gooo.cell.semantic-observer.observe-immutable-commit", "activity": "ObserveImmutableCommit", "proof_choice": "FOUNDATION", "indicator_class": "GUARDRAIL", "metric_id": "gooo.metric.semantic-observer.immutable-commit.v1", "metric_path": "evidence.immutable-commit", "artifact": "evidence.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 4, "id": "gooo.cell.semantic-observer.bind-claim-exact-tuple", "activity": "BindClaimExactTuple", "proof_choice": "FOUNDATION", "indicator_class": "DRIVER", "metric_id": "gooo.metric.semantic-observer.claim-exact-tuple.v1", "metric_path": "claims.exact-tuple", "artifact": "claims.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 5, "id": "gooo.cell.semantic-observer.preserve-original-claim", "activity": "PreserveOriginalClaim", "proof_choice": "COHERENCE", "indicator_class": "OUTCOME", "metric_id": "gooo.metric.semantic-observer.original-claim.v1", "metric_path": "claims.original", "artifact": "claims.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 6, "id": "gooo.cell.semantic-observer.append-supported-transition", "activity": "AppendSupportedTransition", "proof_choice": "COHERENCE", "indicator_class": "GUARDRAIL", "metric_id": "gooo.metric.semantic-observer.supported-transition.v1", "metric_path": "transitions.supported", "artifact": "transitions.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 7, "id": "gooo.cell.semantic-observer.append-refuted-transition", "activity": "AppendRefutedTransition", "proof_choice": "COHERENCE", "indicator_class": "DRIVER", "metric_id": "gooo.metric.semantic-observer.refuted-transition.v1", "metric_path": "transitions.refuted", "artifact": "transitions.ndjson", "evaluator": "observer.Observe"},
+    {"ordinal": 8, "id": "gooo.cell.semantic-observer.preserve-unknown-record", "activity": "PreserveUnknownRecord", "proof_choice": "COHERENCE", "indicator_class": "OUTCOME", "metric_id": "gooo.metric.semantic-observer.unknown-record.v1", "metric_path": "observer-receipt.unknowns", "artifact": "observer-receipt.json", "evaluator": "observer.Observe"},
+    {"ordinal": 9, "id": "gooo.cell.semantic-observer.enforce-digest-match", "activity": "EnforceDigestMatch", "proof_choice": "REGRESSION", "indicator_class": "GUARDRAIL", "metric_id": "gooo.metric.semantic-observer.digest-match.v1", "metric_path": "evidence.digest", "artifact": "observer-receipt.json", "evaluator": "observer.Observe"},
+    {"ordinal": 10, "id": "gooo.cell.semantic-observer.enforce-self-attestation-boundary", "activity": "EnforceSelfAttestationBoundary", "proof_choice": "REGRESSION", "indicator_class": "DRIVER", "metric_id": "gooo.metric.semantic-observer.self-attestation.v1", "metric_path": "claims.self-attestation", "artifact": "observer-receipt.json", "evaluator": "observer.Observe"},
+    {"ordinal": 11, "id": "gooo.cell.semantic-observer.emit-observer-receipt", "activity": "EmitObserverReceipt", "proof_choice": "REGRESSION", "indicator_class": "OUTCOME", "metric_id": "gooo.metric.semantic-observer.observer-receipt.v1", "metric_path": "observer-receipt", "artifact": "observer-receipt.json", "evaluator": "observer.Observe"},
+    {"ordinal": 12, "id": "gooo.cell.semantic-observer.emit-human-report", "activity": "EmitHumanReport", "proof_choice": "REGRESSION", "indicator_class": "GUARDRAIL", "metric_id": "gooo.metric.semantic-observer.human-report.v1", "metric_path": "observer-report", "artifact": "observer-report.md", "evaluator": "observer.Observe"}
+  ]
+}

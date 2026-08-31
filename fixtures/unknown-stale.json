@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/semantic-observer/input/v1",
+  "case_id": "unknown-stale",
+  "evaluator": {"id": "gooo://evaluator/observer-parent", "version": "v0.1.0", "release_tag": "v0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "observed_release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+  "claims": [{"id": "gooo://claim/unknown-stale", "subject_id": "gooo://subject/stale-claim", "title": "Evidence is stale", "assertion_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "exact_tuple": ["subject:stale-claim", "assertion:unknown", "revision:1"], "evaluator_id": "gooo://evaluator/child", "evaluator_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "self_attestation": null}],
+  "evidence": [{"id": "gooo://evidence/stale-5001", "claim_id": "gooo://claim/unknown-stale", "source_kind": "GIT_COMMIT", "source_ref": "commit:0123456789abcdef0123456789abcdef01234567", "evaluator_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observed_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observation": "SUPPORTS", "availability": "AVAILABLE", "freshness": "STALE", "exact_tuple": ["subject:stale-claim", "assertion:unknown", "revision:1"]}],
+  "authority": {"repository_writes": 0, "local_test_executions": 0, "cross_project_required_gates": 0}
+}

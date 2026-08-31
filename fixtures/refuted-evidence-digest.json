@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/semantic-observer/input/v1",
+  "case_id": "refuted-evidence-digest",
+  "evaluator": {"id": "gooo://evaluator/observer-parent", "version": "v0.1.0", "release_tag": "v0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "observed_release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+  "claims": [{"id": "gooo://claim/refuted-evidence-digest", "subject_id": "gooo://subject/evidence-digest-claim", "title": "Evidence digest changed", "assertion_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "exact_tuple": ["subject:evidence-digest-claim", "assertion:closed", "revision:1"], "evaluator_id": "gooo://evaluator/child", "evaluator_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "self_attestation": null}],
+  "evidence": [{"id": "gooo://evidence/digest-8001", "claim_id": "gooo://claim/refuted-evidence-digest", "source_kind": "GITHUB_ARTIFACT", "source_ref": "artifact:8001", "evaluator_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observed_digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "observation": "SUPPORTS", "availability": "AVAILABLE", "freshness": "CURRENT", "exact_tuple": ["subject:evidence-digest-claim", "assertion:closed", "revision:1"]}],
+  "authority": {"repository_writes": 0, "local_test_executions": 0, "cross_project_required_gates": 0}
+}

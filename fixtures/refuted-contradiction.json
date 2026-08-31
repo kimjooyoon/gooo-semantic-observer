@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/semantic-observer/input/v1",
+  "case_id": "refuted-contradiction",
+  "evaluator": {"id": "gooo://evaluator/observer-parent", "version": "v0.1.0", "release_tag": "v0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "observed_release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+  "claims": [{"id": "gooo://claim/refuted-contradiction", "subject_id": "gooo://subject/contradicted-claim", "title": "Claim is contradicted", "assertion_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "exact_tuple": ["subject:contradicted-claim", "assertion:closed", "revision:1"], "evaluator_id": "gooo://evaluator/child", "evaluator_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "self_attestation": null}],
+  "evidence": [{"id": "gooo://evidence/contradiction-7001", "claim_id": "gooo://claim/refuted-contradiction", "source_kind": "GITHUB_RUN", "source_ref": "run:7001", "evaluator_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observed_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observation": "CONTRADICTS", "availability": "AVAILABLE", "freshness": "CURRENT", "exact_tuple": ["subject:contradicted-claim", "assertion:closed", "revision:1"]}],
+  "authority": {"repository_writes": 0, "local_test_executions": 0, "cross_project_required_gates": 0}
+}

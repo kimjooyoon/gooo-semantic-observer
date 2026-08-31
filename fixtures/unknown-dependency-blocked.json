@@ -1,0 +1,8 @@
+{
+  "schema": "gooo/semantic-observer/input/v1",
+  "case_id": "unknown-dependency-blocked",
+  "evaluator": {"id": "gooo://evaluator/observer-parent", "version": "v0.1.0", "release_tag": "v0.1.0", "release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "observed_release_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},
+  "claims": [{"id": "gooo://claim/unknown-dependency-blocked", "subject_id": "gooo://subject/blocked-claim", "title": "Dependency is blocked", "assertion_digest": "sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "exact_tuple": ["subject:blocked-claim", "assertion:unknown", "revision:1"], "evaluator_id": "gooo://evaluator/child", "evaluator_digest": "sha256:cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "self_attestation": null}],
+  "evidence": [{"id": "gooo://evidence/blocked-4001", "claim_id": "gooo://claim/unknown-dependency-blocked", "source_kind": "GITHUB_ARTIFACT", "source_ref": "artifact:4001", "evaluator_digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observed_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "observation": "UNKNOWN", "availability": "BLOCKED", "freshness": "CURRENT", "exact_tuple": ["subject:blocked-claim", "assertion:unknown", "revision:1"]}],
+  "authority": {"repository_writes": 0, "local_test_executions": 0, "cross_project_required_gates": 0}
+}
