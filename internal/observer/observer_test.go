@@ -83,3 +83,43 @@ func TestCallerFixtureSupportsExactTuple(t *testing.T) {
 		t.Fatalf("caller fixture state=%s transition=%#v unknown=%#v", state, transition, unknown)
 	}
 }
+
+func TestObserveClosedCallerFixture(t *testing.T) {
+	root := filepath.Join("..", "..")
+	input, err := os.ReadFile(filepath.Join(root, "fixtures", "closed-caller-input.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	read := func(path string) []byte {
+		data, readErr := os.ReadFile(filepath.Join(root, path))
+		if readErr != nil {
+			t.Fatal(readErr)
+		}
+		return data
+	}
+	source := read("examples/semantic-observer/main.gooo")
+	semantic := read("internal/generated/semantic-ir.json")
+	generatedGo := read("internal/generated/semantic.gooo.go")
+	evaluator := read("internal/observer/evaluate.go")
+	contract := read("contracts/semantic-observer-denominator-v1.json")
+	denominator, _, err := LoadDenominator(filepath.Join(root, "contracts", "semantic-observer-denominator-v1.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	report, _, _, _ := Observe(input, Meta{
+		SourcePath:        "examples/semantic-observer/main.gooo",
+		SourceDigest:      DigestBytes(source),
+		SemanticIRPath:    "internal/generated/semantic-ir.json",
+		SemanticIRDigest:  DigestBytes(semantic),
+		GeneratedGoPath:   "internal/generated/semantic.gooo.go",
+		GeneratedGoDigest: DigestBytes(generatedGo),
+		EvaluatorPath:     "internal/observer/evaluate.go",
+		EvaluatorDigest:   DigestBytes(evaluator),
+		ContractPath:      "contracts/semantic-observer-denominator-v1.json",
+		ContractDigest:    DigestBytes(contract),
+		Denominator:       denominator,
+	}, InventoryMetrics{})
+	if report.Decision != DecisionClosed {
+		t.Fatalf("caller observe decision=%s reason=%s claims=%#v unknowns=%#v transitions=%#v", report.Decision, report.Reason, report.Claims, report.Unknowns, report.Transitions)
+	}
+}

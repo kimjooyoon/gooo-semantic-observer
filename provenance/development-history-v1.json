@@ -51,6 +51,14 @@
       "stage": "conformance",
       "reason": "closed-caller-input remained UNKNOWN after source binding correction; direct fixture regression test added",
       "preserved": true
+    },
+    {
+      "run_id": "33361480572",
+      "job_id": "99393543581",
+      "commit": "3c4ed37",
+      "stage": "conformance",
+      "reason": "direct observeClaim regression test passed while end-to-end caller fixture remained UNKNOWN; full Observe regression test added",
+      "preserved": true
     }
   ],
   "duplicate_writers": [],
