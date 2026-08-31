@@ -35,6 +35,14 @@
       "stage": "gofmt",
       "reason": "observer model Authority field retained one extra alignment space",
       "preserved": true
+    },
+    {
+      "run_id": "33361281488",
+      "job_id": "99392973890",
+      "commit": "782a144",
+      "stage": "conformance",
+      "reason": "caller-owned fixture source references omitted the sha256 digest prefix",
+      "preserved": true
     }
   ],
   "duplicate_writers": [],
