@@ -13,6 +13,14 @@
   ],
   "failed_attempts": [
     {
+      "run_id": "33360870237",
+      "job_id": "99391822458",
+      "commit": "cca1676",
+      "stage": "go test ./...",
+      "reason": "initial baseline had the same missing next_operation report argument later fixed in PR #1",
+      "preserved": true
+    },
+    {
       "run_id": "33361037619",
       "job_id": "99392286342",
       "commit": "51a7ef9",
