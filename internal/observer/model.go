@@ -209,6 +209,11 @@ type AuthorityChain struct {
 	HumanReport ArtifactLink `json:"human_report"`
 }
 
+type SelfBinding struct {
+	Mode         string `json:"mode"`
+	ManifestPath string `json:"manifest_path"`
+}
+
 type AppendOnly struct {
 	OriginalClaimPreserved bool `json:"original_claim_preserved"`
 	EvidencePreserved      bool `json:"evidence_preserved"`
@@ -237,6 +242,7 @@ type Meta struct {
 	EvaluatorDigest   string
 	ContractPath      string
 	ContractDigest    string
+	ManifestPath      string
 	ReceiptPath       string
 	HumanReportPath   string
 	Denominator       Denominator
@@ -258,6 +264,7 @@ type Report struct {
 	Inventory      InventoryMetrics `json:"inventory"`
 	Authority      AuthorityReport  `json:"authority"`
 	AuthorityChain AuthorityChain   `json:"authority_chain"`
+	SelfBinding    SelfBinding      `json:"self_binding"`
 	AppendOnly     AppendOnly       `json:"append_only"`
 }
 

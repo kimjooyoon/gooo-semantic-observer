@@ -10,6 +10,17 @@ jq -e '
 ' provenance/development-history-v1.json >/dev/null
 
 jq -e '
+  .schema == "gooo/semantic-observer/release-history/v1" and
+  .releases[0].tag == "v0.1.0" and
+  .releases[0].status == "REFUTED_RECEIPT_DIGEST_UNBOUND" and
+  .releases[0].target_commit == "091764a433400dbd0c31a2f48e257ac300a99d4f" and
+  .releases[0].tag_object == "8fbce29f46e13b9e489a2ba49012046eddecf25e" and
+  .releases[0].asset.digest == "sha256:34fb06f127bb6bffd64f07dc59916205963bffbf051f1e504cb64ea886731034" and
+  .releases[0].preservation.delete == false and
+  .releases[0].preservation.recreate == false
+' provenance/release-history-v1.json >/dev/null
+
+jq -e '
   .schema == "gooo/semantic-observer/denominator/v1" and
   .total == 12 and (.cells | length) == 12
 ' contracts/semantic-observer-denominator-v1.json >/dev/null

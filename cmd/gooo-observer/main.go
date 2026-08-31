@@ -32,7 +32,7 @@ func run(args []string, stdout io.Writer, stderr io.Writer) int {
 	case "conformance":
 		return conformance(args[1:], stdout, stderr)
 	case "version":
-		fmt.Fprintln(stdout, "gooo-semantic-observer/v0.1.0")
+		fmt.Fprintln(stdout, "gooo-semantic-observer/v0.1.1")
 		return 0
 	default:
 		usage(stderr)
@@ -152,6 +152,10 @@ func conformance(args []string, stdout io.Writer, stderr io.Writer) int {
 		fmt.Fprintf(stderr, "canonical fixture count = %d, want 12\n", len(reports))
 		return 1
 	}
+	if err := verifyReceiptSubstitutionCounterexample(*outputDir); err != nil {
+		fmt.Fprintf(stderr, "receipt substitution counterexample: %v\n", err)
+		return 1
+	}
 	counts := map[string]int{}
 	classes := map[string]bool{}
 	for _, report := range reports {
@@ -231,6 +235,7 @@ func observeFile(inputPath, outputDir, inventoryRoot string, stderr io.Writer) (
 	if err != nil {
 		return observer.Report{}, err
 	}
+	manifestPath := filepath.Join(outputDir, "observation-manifest.json")
 	receiptPath := filepath.Join(outputDir, "observer-receipt.json")
 	humanPath := filepath.Join(outputDir, "observer-report.md")
 	meta := observer.Meta{
@@ -244,6 +249,7 @@ func observeFile(inputPath, outputDir, inventoryRoot string, stderr io.Writer) (
 		EvaluatorDigest:   observer.DigestBytes(evaluator),
 		ContractPath:      contractPath,
 		ContractDigest:    observer.DigestBytes(contract),
+		ManifestPath:      filepath.Base(manifestPath),
 		ReceiptPath:       receiptPath,
 		HumanReportPath:   humanPath,
 		Denominator:       denominator,
@@ -261,9 +267,6 @@ func observeFile(inputPath, outputDir, inventoryRoot string, stderr io.Writer) (
 		Transitions:     len(transitions),
 		AuthorityChain:  report.AuthorityChain,
 	}
-	if err := writeJSON(filepath.Join(outputDir, "observation-manifest.json"), manifest); err != nil {
-		return observer.Report{}, err
-	}
 	if err := writeNDJSON(filepath.Join(outputDir, "claims.ndjson"), claims); err != nil {
 		return observer.Report{}, err
 	}
@@ -279,7 +282,18 @@ func observeFile(inputPath, outputDir, inventoryRoot string, stderr io.Writer) (
 	if err := writeFile(filepath.Join(outputDir, "observer-report.md"), []byte(human)); err != nil {
 		return observer.Report{}, err
 	}
+	receiptBytes, err := os.ReadFile(receiptPath)
+	if err != nil {
+		return observer.Report{}, err
+	}
+	manifest.AuthorityChain.Receipt.Digest = observer.DigestBytes(receiptBytes)
+	if err := writeJSON(manifestPath, manifest); err != nil {
+		return observer.Report{}, err
+	}
 	if err := verifyArtifactSet(outputDir); err != nil {
+		return observer.Report{}, err
+	}
+	if err := verifyDetachedReceiptBinding(outputDir); err != nil {
 		return observer.Report{}, err
 	}
 	return report, nil
@@ -393,6 +407,65 @@ func verifyArtifactSet(path string) error {
 	sort.Strings(expected)
 	if !sameStrings(actual, expected) {
 		return fmt.Errorf("output artifact set = %v, want %v", actual, expected)
+	}
+	return nil
+}
+
+func verifyDetachedReceiptBinding(outputDir string) error {
+	manifest, err := os.ReadFile(filepath.Join(outputDir, "observation-manifest.json"))
+	if err != nil {
+		return err
+	}
+	receipt, err := os.ReadFile(filepath.Join(outputDir, "observer-receipt.json"))
+	if err != nil {
+		return err
+	}
+	return verifyDetachedReceiptBindingBytes(manifest, receipt)
+}
+
+func verifyDetachedReceiptBindingBytes(manifestBytes, receiptBytes []byte) error {
+	var manifest observer.ObservationManifest
+	manifestDecoder := json.NewDecoder(bytes.NewReader(manifestBytes))
+	manifestDecoder.DisallowUnknownFields()
+	if err := manifestDecoder.Decode(&manifest); err != nil {
+		return err
+	}
+	var receipt observer.Report
+	receiptDecoder := json.NewDecoder(bytes.NewReader(receiptBytes))
+	receiptDecoder.DisallowUnknownFields()
+	if err := receiptDecoder.Decode(&receipt); err != nil {
+		return err
+	}
+	if receipt.AuthorityChain.Receipt.Digest != "" {
+		return errors.New("REFUTED_RECEIPT_SELF_DIGEST_PRESENT")
+	}
+	if receipt.SelfBinding.Mode != "DETACHED_MANIFEST" || receipt.SelfBinding.ManifestPath == "" {
+		return errors.New("REFUTED_RECEIPT_SELF_BINDING_MISSING")
+	}
+	if manifest.AuthorityChain.Receipt.Digest == "" {
+		return errors.New("REFUTED_RECEIPT_DIGEST_UNBOUND")
+	}
+	if manifest.AuthorityChain.Receipt.Digest != observer.DigestBytes(receiptBytes) {
+		return errors.New("REFUTED_RECEIPT_DIGEST_UNBOUND")
+	}
+	if manifest.CaseID != receipt.CaseID {
+		return errors.New("REFUTED_RECEIPT_CASE_BINDING_MISMATCH")
+	}
+	return nil
+}
+
+func verifyReceiptSubstitutionCounterexample(outputDir string) error {
+	targetManifest, err := os.ReadFile(filepath.Join(outputDir, "closed-github-run", "observation-manifest.json"))
+	if err != nil {
+		return err
+	}
+	substituteReceipt, err := os.ReadFile(filepath.Join(outputDir, "refuted-contradiction", "observer-receipt.json"))
+	if err != nil {
+		return err
+	}
+	err = verifyDetachedReceiptBindingBytes(targetManifest, substituteReceipt)
+	if err == nil || err.Error() != "REFUTED_RECEIPT_DIGEST_UNBOUND" {
+		return fmt.Errorf("expected REFUTED_RECEIPT_DIGEST_UNBOUND, got %v", err)
 	}
 	return nil
 }
